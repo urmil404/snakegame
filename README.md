@@ -1,2 +1,3 @@
-# Code for Snake -Mouse Game in HTML,CSS & Javascript
-# This is made by Urmil89
+# Code for Snake-Mouse Game in HTML,CSS & Javascript
+
+## This is made by URMISIR
