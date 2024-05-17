@@ -1,5 +1,3 @@
-// snake.js
-
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
 
@@ -22,10 +20,11 @@ var apple = {
     y: Math.floor(Math.random() * gridHeight) * gridSize
 };
 
-var frameRate = 60; // Initial frame rate (60 fps)
-var speedIncrement = 2; // Speed increment (in milliseconds)
+var frameRate = 600; // Slower initial frame rate (600 ms per frame)
+var minFrameRate = 50; // Minimum frame rate (50 ms per frame)
+var speedIncrement = 10; // Speed increment (10 ms)
 
-var count = 0; // Counter for game loop
+var lastTime = 0; // To track the time for frame rate control
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -50,13 +49,12 @@ function drawGameOver() {
     context.fillText('Score: ' + appleCount, canvas.width / 2 - 50, canvas.height / 2 + 20);
 }
 
-function loop() {
-    requestAnimationFrame(loop);
-
-    if (++count < 4) {
+function loop(timestamp) {
+    if (timestamp - lastTime < frameRate) {
+        requestAnimationFrame(loop);
         return;
     }
-    count = 0;
+    lastTime = timestamp;
 
     context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -94,8 +92,8 @@ function loop() {
 
             // Increase speed based on apple count
             frameRate -= speedIncrement;
-            if (frameRate < 50) {
-                frameRate = 50; // Minimum frame rate
+            if (frameRate < minFrameRate) {
+                frameRate = minFrameRate; // Minimum frame rate
             }
         }
 
@@ -109,6 +107,7 @@ function loop() {
     });
 
     drawSnakeFace();
+    requestAnimationFrame(loop);
 }
 
 function gameOver() {
@@ -131,6 +130,7 @@ document.addEventListener('keydown', function (e) {
         snake.dx = 0;
     }
 });
+
 document.querySelector('.up').addEventListener('click', () => {
     if (snake.dy === 0) {
         snake.dy = -gridSize;
