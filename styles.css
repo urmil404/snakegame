@@ -38,8 +38,58 @@ img {
 }
 
 canvas {
-  width: 100%; /* Take up 100% of the width */
-  height: auto; /* Let the height adjust automatically */
+  width: 100%;
+  height: auto;
   border: 8px solid white;
   box-sizing: border-box;
+}
+  
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+  .left-block, .right-block {
+    width: 100%;
+    float: none;
+    padding: 10px;
+    height: auto;
+  }
+
+  .heading {
+    font-size: 3rem;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  canvas {
+    width: 100%;
+    height: auto; 
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .controls button {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+  }
+
+  .controls .up {
+    order: 1;
+  }
+
+  .controls .left {
+    order: 2;
+  }
+
+  .controls .down {
+    order: 3;
+  }
+
+  .controls .right {
+    order: 4;
+  }
 }

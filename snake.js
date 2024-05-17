@@ -131,5 +131,32 @@ document.addEventListener('keydown', function (e) {
         snake.dx = 0;
     }
 });
+document.querySelector('.up').addEventListener('click', () => {
+    if (snake.dy === 0) {
+        snake.dy = -gridSize;
+        snake.dx = 0;
+    }
+});
+
+document.querySelector('.left').addEventListener('click', () => {
+    if (snake.dx === 0) {
+        snake.dx = -gridSize;
+        snake.dy = 0;
+    }
+});
+
+document.querySelector('.down').addEventListener('click', () => {
+    if (snake.dy === 0) {
+        snake.dy = gridSize;
+        snake.dx = 0;
+    }
+});
+
+document.querySelector('.right').addEventListener('click', () => {
+    if (snake.dx === 0) {
+        snake.dx = gridSize;
+        snake.dy = 0;
+    }
+});
 
 requestAnimationFrame(loop);
